@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bloomia</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="title">Bloomia</div>
+          <div class="subtitle">Rule-based movement puzzle (prototype)</div>
+        </div>
+        <div class="actions">
+          <button id="btn-settings" class="btn" type="button">Settings</button>
+          <button id="btn-hint" class="btn" type="button">Hint</button>
+          <button id="btn-restart" class="btn btn-primary" type="button">Restart</button>
+        </div>
+      </header>
+
+      <section class="stage">
+        <canvas id="game" class="canvas" width="800" height="600"></canvas>
+        <div id="hud" class="hud" aria-live="polite"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-col">
+          <div class="panel-title">Leaderboard</div>
+          <div id="leaderboard" class="leaderboard"></div>
+          <div class="panel-title panel-title-spaced">Active Rules (debug)</div>
+          <div id="active-rules" class="rules"></div>
+          <div class="panel-title panel-title-spaced">All Rules (debug)</div>
+          <div id="rulebook" class="rules"></div>
+        </div>
+        <div class="panel-col">
+          <div class="panel-title">Run</div>
+          <div id="run-summary" class="run"></div>
+          <div class="panel-title panel-title-spaced">Hint</div>
+          <div id="hint" class="hintbox">Press Hint to reveal acceptable directions (costs max tension for 3 moves).</div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="settings" class="dialog">
+      <form method="dialog" class="dialog-form">
+        <header class="dialog-header">
+          <div class="dialog-title">Settings</div>
+          <button class="btn" value="close">Close</button>
+        </header>
+
+        <div class="dialog-body">
+          <label class="field">
+            <div class="field-label">Display name (leaderboard)</div>
+            <input id="player-name" class="input" type="text" maxlength="24" placeholder="Anonymous" />
+          </label>
+
+          <div class="hint">
+            To enable the global leaderboard, paste your Supabase project URL + anon key. These are public values
+            (safe to embed), but your database must use RLS to prevent abuse.
+          </div>
+
+          <label class="field">
+            <div class="field-label">Supabase URL</div>
+            <input id="supabase-url" class="input" type="url" placeholder="https://xxxx.supabase.co" />
+          </label>
+
+          <label class="field">
+            <div class="field-label">Supabase anon key</div>
+            <textarea id="supabase-anon-key" class="textarea" rows="4" placeholder="eyJhbGciOi..."></textarea>
+          </label>
+
+          <div class="row">
+            <button id="btn-save-settings" class="btn btn-primary" value="close">Save</button>
+            <button id="btn-clear-settings" class="btn" type="button">Disable scoreboard</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
